@@ -12,6 +12,7 @@
 
 using namespace std;
 
+/*
 //Information storage for a student
 struct Child {
   char* name;
@@ -19,24 +20,29 @@ struct Child {
   int id;
   float gpa;
 };
+*/
 
+/*
 //Prototypes
 Child add(char* name, char* surname, int id, float gpa);
 int find(vector<Child> list, int id);
+*/
 
 int main() {
   //Input cstring
-  char* cmd = new char[7];
+  char* cmd = new char[100];
 
+  /*
   //Student list
   vector<Child> list;
+  */
   
-  cout << "Hello fellow fleshy mammal. Welcome to my Sunset High School student simulator. Enjoy your stay." << endl;
+  cout << "This is a repurposed version of my old \"student list\" program, meant to showcase my \"Node\" object." << endl; 
   cout << "Type in a command to get started." << endl;
 
   while (true) {
   
-    cout << endl << "Commands: " << endl << "ADD" << endl << "PRINT" << endl << "DELETE" << endl << "QUIT" << endl;
+    cout << endl << "Commands: " << endl << "ADD" << endl << "PRINT" << endl << "QUIT" << endl;
 
     cout << "> ";
 
@@ -48,36 +54,41 @@ int main() {
 	(cmd[1] == 'D' || cmd[1] == 'd') &&
 	(cmd[2] == 'D' || cmd[2] == 'd')) {
       
-      char* name = new char[100];
-      char* surname = new char[100];
+      //char* name = new char[100];
+      //char* surname = new char[100];
       int id;
-      float gpa;
-      
+      //float gpa;
+
+      /*
       cout << endl << "-----" << endl;
       cout << "Student\'s first name: ";
       cin.getline(name, 100);
       
       cout << "Student\'s last name: ";
       cin.getline(surname, 100);
-      
+      */
+      /*
       bool valid = false;
       while (!valid) {
-	cout << "Student ID: ";
-	cin >> id;
-	//Only allow up to 6-digit id's because I believe in segregation of numbers
-	if (find(list, id) == -1)
-	  valid = true;
-	else
-	  cout << endl << "This ID already belongs to another student. Please enter an unused 6-digit number" << endl;
+      */
+      cout << "Student ID: ";
+      cin >> id; cin.clear(); cin.ignore(100, '\n');
+      //Only allow up to 6-digit id's because I believe in segregation of numbers
+      /*
+      if (find(list, id) == -1)
+	valid = true;
+      else
+	cout << endl << "This ID already belongs to another student. Please enter an unused 6-digit number" << endl;
       }
-      
+      */
+      /*
       cout << "Student GPA: ";
       cin >> gpa;
       
       //Add custom child to the list
       list.push_back(add(name, surname, id, gpa));
       cin.ignore();
-
+      */
     }
       
     //List all current students
@@ -87,7 +98,7 @@ int main() {
 	(cmd[3] == 'N' || cmd[3] == 'n') &&
 	(cmd[4] == 'T' || cmd[4] == 't')) {
 
-      char zeroes[6];
+      //char zeroes[6];
 
       cout << endl << "-----" << endl;
 
@@ -110,6 +121,7 @@ int main() {
       
     }
 
+    /*
     //Delete a student
     if ((cmd[0] == 'D' || cmd[0] == 'd') &&
 	(cmd[1] == 'E' || cmd[1] == 'e') &&
@@ -142,6 +154,7 @@ int main() {
       cout << "-----" << endl;
 
     }
+    */
 
     //Kill the program
     if ((cmd[0] == 'Q' || cmd[0] == 'q') &&
@@ -155,6 +168,7 @@ int main() {
   }
 }
 
+/*
 //Create a new Student, must return Child
 Child add(char* name, char* surname, int id, float gpa) {
   Child c;
@@ -178,4 +192,5 @@ int find(vector<Child> list, int id) {
   }
   return -1; //This means that there are no students with the inputted id
 }
+*/
 
