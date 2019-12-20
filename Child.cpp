@@ -8,7 +8,8 @@
  * @version release 1.0
  */
 #include <iostream>
-#include <vector>
+#include "Student.h"
+#include "Node.h"
 
 using namespace std;
 
@@ -31,11 +32,14 @@ int find(vector<Child> list, int id);
 int main() {
   //Input cstring
   char* cmd = new char[100];
-
+  Node start(new Student(-1)); //'-1' means start or end of chain. In this case, it's the start
+  int iter = 0;
   /*
   //Student list
   vector<Child> list;
   */
+
+  start.setNext(new Node(new Student(-1)));
   
   cout << "This is a repurposed version of my old \"student list\" program, meant to showcase my \"Node\" object." << endl; 
   cout << "Type in a command to get started." << endl;
@@ -46,7 +50,7 @@ int main() {
 
     cout << "> ";
 
-    cin.getline(cmd, 7);
+    cin.getline(cmd, 100);
 
     //Another way to do what I just did: if (strcmp(input,"ADD")) {
     //Add command - Add a student to the list with specified parameters
@@ -89,6 +93,37 @@ int main() {
       list.push_back(add(name, surname, id, gpa));
       cin.ignore();
       */
+      /*
+      Node *n;
+      n = &start;
+      Node m = *n;
+
+      //Cycle through the chain until *n is the very last Node in the chain
+      for (int i = 0; m.getNext()->getStudent()->getID() != -1; i++) {
+	*n = *n->getNext();
+	Node m = *n;
+      }
+      //Once that has happened, add a new link to the end
+      *n->getNext()->setNext(m.getNext());
+      */
+      Node* n;
+      Node *m;
+      m = &start;
+      n = m;
+
+      //This is all to try and get the last Node in the chain
+      for (int i = 0; i < iter; i++) {
+      	n = m;
+		m = n->getNext();
+	    //cout << i << endl;
+      }
+      
+      Node* o = new Node(new Student(id));
+      m->setNext(o); //WHY DOES THIS WORK??????? WHY DON'T I NEED TO USE *m????????? AHHHHHHHHHH
+      //cout << m->getNext()->getStudent()->getID() << endl;
+      
+      iter++;
+      
     }
       
     //List all current students
@@ -97,27 +132,19 @@ int main() {
 	(cmd[2] == 'I' || cmd[2] == 'i') &&
 	(cmd[3] == 'N' || cmd[3] == 'n') &&
 	(cmd[4] == 'T' || cmd[4] == 't')) {
-
+	
       //char zeroes[6];
-
-      cout << endl << "-----" << endl;
-
-      if (list.size() == 0) {
-	cout << "NONE" << endl;
-      }
-      else {
-	for (int i = 0; i < list.size(); i++) {
-	  if (i != 0) {
-	    cout << endl;
+      
+      Node *n;
+      Node *m;
+      n = &start;
+      m = &start;
+      //Go through the chain and print all o' them kids
+	  for (int i = 0; i < iter; i++) {
+	  	n = m;
+	  	cout << "Student #" << i+1 << ":" << endl << "ID: " << n->getNext()->getStudent()->getID() << endl;
+	    m = n->getNext();
 	  }
-	  cout << "Student #" << i + 1 << ":" << endl;
-	  cout << list[i].name << " " << list[i].surname << endl;
-	  cout << "Student ID: " << zeroes << list[i].id << endl;
-	  cout.precision(3);
-	  cout << "Student GPA: " << list[i].gpa << endl;
-	}
-      }
-      cout << "-----" << endl;
       
     }
 
